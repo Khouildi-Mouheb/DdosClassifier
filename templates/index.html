@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS Attack Detection System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .attack-bg { background: linear-gradient(135deg, #fecaca 0%, #fee2e2 100%); }
+        .normal-bg { background: linear-gradient(135deg, #d1fae5 0%, #dcfce7 100%); }
+        .feature-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); }
+        .pulse-attack { animation: pulse-red 2s infinite; }
+        .pulse-normal { animation: pulse-green 2s infinite; }
+        @keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12 bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+            <div class="flex items-center justify-center mb-6">
+                <i class="fas fa-shield-alt text-4xl text-blue-600 mr-4"></i>
+                <h1 class="text-4xl font-bold text-gray-900">DDoS Attack Detection & Education System</h1>
+            </div>
+            <p class="text-xl text-gray-600 mb-6">Advanced AI-powered detection with educational resources</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-brain mr-2"></i> Neural Network Model
+                </div>
+                <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-database mr-2"></i> Real-time Analysis
+                </div>
+                <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-graduation-cap mr-2"></i> Educational Content
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left: Educational Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- What is DDoS -->
+                <section class="bg-white p-8 rounded-2xl shadow-md border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-red-500 mr-3 text-2xl"></i>
+                        Understanding DDoS Attacks
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-700">
+                            A <strong class="text-red-600">Distributed Denial-of-Service (DDoS)</strong> attack is a malicious attempt to disrupt normal 
+                            traffic of a targeted server, service, or network by overwhelming it with a flood of Internet traffic.
+                        </p>
+                        
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                            <p class="font-semibold text-red-800 mb-2">
+                                <i class="fas fa-traffic-light mr-2"></i>Real-world Impact:
+                            </p>
+                            <p class="text-red-700">
+                                In 2023, the largest DDoS attack recorded peaked at <strong>710 million requests per second</strong>, 
+                                highlighting the scale of modern threats.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Attack Types -->
+                <section class="bg-white p-8 rounded-2xl shadow-md border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-layer-group text-purple-500 mr-3 text-2xl"></i>
+                        Types of DDoS Attacks
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-wave-square text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900 mb-2">Volumetric Attacks</h3>
+                                <p class="text-gray-700 mb-2">Overwhelm bandwidth with massive traffic.</p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-satellite-dish text-red-400 mr-2"></i>DNS Amplification</li>
+                                    <li><i class="fas fa-broadcast-tower text-red-400 mr-2"></i>UDP Floods</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-handshake text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900 mb-2">Protocol Attacks</h3>
+                                <p class="text-gray-700 mb-2">Exploit server protocol weaknesses.</p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-exchange-alt text-yellow-500 mr-2"></i>SYN Floods</li>
+                                    <li><i class="fas fa-ping text-yellow-500 mr-2"></i>Ping of Death</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-code text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900 mb-2">Application Layer</h3>
+                                <p class="text-gray-700 mb-2">Target specific applications/services.</p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-globe text-blue-500 mr-2"></i>HTTP Floods</li>
+                                    <li><i class="fas fa-slow-motion text-blue-500 mr-2"></i>Slowloris</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Detection Features -->
+                <section class="bg-white p-8 rounded-2xl shadow-md border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-search text-green-500 mr-3 text-2xl"></i>
+                        What Our Model Analyzes
+                    </h2>
+                    
+                    <p class="text-gray-700 mb-6">
+                        This AI model analyzes <strong>{{ num_features }}</strong> network traffic features including:
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <i class="fas fa-tachometer-alt text-blue-500 mr-2"></i>
+                            <span class="font-medium">Packet Rates</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <i class="fas fa-clock text-blue-500 mr-2"></i>
+                            <span class="font-medium">Flow Duration</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <i class="fas fa-ruler-combined text-blue-500 mr-2"></i>
+                            <span class="font-medium">Packet Length</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <i class="fas fa-exchange-alt text-blue-500 mr-2"></i>
+                            <span class="font-medium">Protocol Statistics</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-blue-50 p-4 rounded-lg">
+                        <p class="text-blue-800">
+                            <i class="fas fa-lightbulb mr-2"></i>
+                            <strong>Tip:</strong> The model uses a 4-layer neural network trained on real DDoS attack data to identify these patterns.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right: Detection Interface -->
+            <div class="space-y-8">
+                <!-- Detection Panel -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8 rounded-2xl shadow-xl">
+                    <h2 class="text-2xl font-bold mb-6 text-center">
+                        <i class="fas fa-search mr-3"></i>Real-time Detection
+                    </h2>
+                    
+                    <!-- Feature Inputs -->
+                    <div class="mb-8">
+                        <p class="text-gray-300 mb-4">Enter network traffic features for analysis:</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    <i class="fas fa-tachometer-alt mr-2"></i>Packet Rate
+                                </label>
+                                <input type="number" step="0.001" id="feature1" 
+                                       class="w-full p-3 rounded-lg bg-gray-700 text-white feature-input"
+                                       placeholder="e.g., 1500.5">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    <i class="fas fa-clock mr-2"></i>Flow Duration
+                                </label>
+                                <input type="number" step="0.001" id="feature2" 
+                                       class="w-full p-3 rounded-lg bg-gray-700 text-white feature-input"
+                                       placeholder="e.g., 0.05">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    <i class="fas fa-ruler mr-2"></i>Packet Size
+                                </label>
+                                <input type="number" step="0.001" id="feature3" 
+                                       class="w-full p-3 rounded-lg bg-gray-700 text-white feature-input"
+                                       placeholder="e.g., 512.0">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    <i class="fas fa-percentage mr-2"></i>Protocol Ratio
+                                </label>
+                                <input type="number" step="0.001" id="feature4" 
+                                       class="w-full p-3 rounded-lg bg-gray-700 text-white feature-input"
+                                       placeholder="e.g., 0.85">
+                            </div>
+                        </div>
+                        
+                        <button onclick="analyzeTraffic()" 
+                                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg">
+                            <i class="fas fa-bolt mr-3"></i>Analyze Network Traffic
+                        </button>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div id="resultSection" class="hidden p-6 rounded-xl bg-gray-700/50 backdrop-blur-sm">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-chart-bar mr-3"></i>Analysis Results
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Status:</span>
+                                <span id="predictionText" class="font-bold text-2xl">-</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Confidence:</span>
+                                <span id="probabilityText" class="font-mono text-lg">-</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Risk Level:</span>
+                                <span id="confidenceText" class="font-bold">-</span>
+                            </div>
+                            
+                            <div class="mt-4 p-4 rounded-lg bg-gray-800">
+                                <p class="font-medium mb-2 flex items-center">
+                                    <i class="fas fa-info-circle mr-2"></i>Expert Analysis:
+                                </p>
+                                <p id="explanationText" class="text-gray-300 text-sm leading-relaxed">
+                                    Analysis will appear here...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Test Buttons -->
+                    <div class="mt-8 pt-6 border-t border-gray-700">
+                        <p class="font-medium mb-4 text-center text-gray-300">
+                            <i class="fas fa-vial mr-2"></i>Quick Test Scenarios
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="loadSample('normal')" 
+                                    class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-3 px-4 rounded-xl text-sm font-medium transition duration-300">
+                                <i class="fas fa-check-circle mr-2"></i>Normal Traffic
+                            </button>
+                            <button onclick="loadSample('attack')" 
+                                    class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white py-3 px-4 rounded-xl text-sm font-medium transition duration-300">
+                                <i class="fas fa-skull-crossbones mr-2"></i>Attack Traffic
+                            </button>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div class="text-gray-400 text-xs">
+                                <i class="fas fa-microchip mr-1"></i>
+                                Powered by PyTorch Neural Network
+                            </div>
+                            <div class="text-gray-500 text-xs mt-1">
+                                Model ID: DDoS-Detector-v1.0
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-server mr-3 text-blue-500"></i>System Status
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Model Status:</span>
+                            <span id="modelStatus" class="font-medium text-green-600">
+                                <i class="fas fa-circle text-xs mr-1"></i>Loaded
+                            </span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Features Expected:</span>
+                            <span class="font-medium text-blue-600">{{ num_features }}</span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">API Endpoint:</span>
+                            <span class="font-mono text-sm text-gray-500">/predict</span>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button onclick="testConnection()" 
+                                    class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg text-sm font-medium transition duration-300">
+                                <i class="fas fa-wifi mr-2"></i>Test Connection
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const NUM_FEATURES = {{ num_features|default(78) }};
+        
+        // Initialize model status
+        document.addEventListener('DOMContentLoaded', function() {
+            updateModelStatus();
+        });
+
+        function updateModelStatus() {
+            fetch('/model_info')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        document.getElementById('modelStatus').innerHTML = 
+                            '<i class="fas fa-circle text-xs mr-1 text-green-500"></i>Ready';
+                    } else {
+                        document.getElementById('modelStatus').innerHTML = 
+                            '<i class="fas fa-circle text-xs mr-1 text-red-500"></i>Not Ready';
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('modelStatus').innerHTML = 
+                        '<i class="fas fa-circle text-xs mr-1 text-yellow-500"></i>Checking...';
+                });
+        }
+
+        function getInputFeatures() {
+            const ids = ['feature1', 'feature2', 'feature3', 'feature4'];
+            let values = [];
+            
+            ids.forEach(id => {
+                const input = document.getElementById(id);
+                const val = input.value.trim();
+                values.push(val ? parseFloat(val) : 0.0);
+            });
+            
+            // Pad with zeros for remaining features
+            while (values.length < NUM_FEATURES) {
+                values.push(0.0);
+            }
+            
+            return values.slice(0, NUM_FEATURES);
+        }
+
+        function analyzeTraffic() {
+            const features = getInputFeatures();
+            const resultDiv = document.getElementById('resultSection');
+            const analyzeBtn = document.querySelector('button[onclick="analyzeTraffic()"]');
+            
+            // Show loading state
+            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Analyzing...';
+            analyzeBtn.disabled = true;
+            
+            resultDiv.classList.remove('hidden');
+            document.getElementById('predictionText').innerText = 'Analyzing...';
+            document.getElementById('probabilityText').innerText = '';
+            document.getElementById('explanationText').innerText = 'Processing network traffic patterns...';
+            
+            fetch('/test_simple', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ features: features })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const predictionEl = document.getElementById('predictionText');
+                    const probabilityEl = document.getElementById('probabilityText');
+                    const confidenceEl = document.getElementById('confidenceText');
+                    const explanationEl = document.getElementById('explanationText');
+                    
+                    // Update prediction with styling
+                    predictionEl.innerText = data.prediction;
+                    if (data.prediction === 'ATTACK') {
+                        predictionEl.className = 'font-bold text-2xl text-red-400 pulse-attack';
+                        resultDiv.className = resultDiv.className.replace('bg-gray-700', 'attack-bg');
+                    } else {
+                        predictionEl.className = 'font-bold text-2xl text-green-400 pulse-normal';
+                        resultDiv.className = resultDiv.className.replace('bg-gray-700', 'normal-bg');
+                    }
+                    
+                    // Update probability
+                    const probPercent = (data.probability * 100).toFixed(2);
+                    probabilityEl.innerText = `${probPercent}%`;
+                    
+                    // Update confidence
+                    confidenceEl.innerText = data.confidence;
+                    confidenceEl.className = data.confidence === 'HIGH' ? 
+                        'font-bold text-red-500' : 
+                        data.confidence === 'MEDIUM' ? 
+                        'font-bold text-yellow-500' : 
+                        'font-bold text-green-500';
+                    
+                    // Update explanation
+                    explanationEl.innerText = data.explanation;
+                    
+                } else {
+                    document.getElementById('predictionText').innerText = 'Error';
+                    document.getElementById('explanationText').innerText = 
+                        'Error: ' + (data.error || 'Unknown error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('predictionText').innerText = 'Network Error';
+                document.getElementById('explanationText').innerText = 
+                    'Unable to connect to the detection service. Please check your connection.';
+            })
+            .finally(() => {
+                // Reset button
+                analyzeBtn.innerHTML = '<i class="fas fa-bolt mr-3"></i>Analyze Network Traffic';
+                analyzeBtn.disabled = false;
+            });
+        }
+
+        function loadSample(type) {
+            let sample = [];
+            
+            if (type === 'normal') {
+                sample = [1500.5, 0.05, 512.0, 0.85]; // Normal traffic
+                document.getElementById('feature1').value = sample[0];
+                document.getElementById('feature2').value = sample[1];
+                document.getElementById('feature3').value = sample[2];
+                document.getElementById('feature4').value = sample[3];
+            } else if (type === 'attack') {
+                sample = [85000.0, 0.001, 1024.0, 0.99]; // Attack traffic
+                document.getElementById('feature1').value = sample[0];
+                document.getElementById('feature2').value = sample[1];
+                document.getElementById('feature3').value = sample[2];
+                document.getElementById('feature4').value = sample[3];
+            }
+            
+            // Auto-analyze after loading
+            setTimeout(analyzeTraffic, 300);
+        }
+
+        function testConnection() {
+            const statusEl = document.getElementById('modelStatus');
+            statusEl.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i>Testing...';
+            
+            fetch('/model_info')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        statusEl.innerHTML = 
+                            '<i class="fas fa-circle text-xs mr-1 text-green-500"></i>Connected';
+                        
+                        // Show brief success message
+                        const originalText = document.querySelector('button[onclick="testConnection()"]').innerText;
+                        document.querySelector('button[onclick="testConnection()"]').innerHTML = 
+                            '<i class="fas fa-check mr-2"></i>Connected!';
+                        
+                        setTimeout(() => {
+                            document.querySelector('button[onclick="testConnection()"]').innerHTML = 
+                                '<i class="fas fa-wifi mr-2"></i>Test Connection';
+                        }, 2000);
+                    } else {
+                        statusEl.innerHTML = 
+                            '<i class="fas fa-circle text-xs mr-1 text-red-500"></i>Failed';
+                    }
+                })
+                .catch(() => {
+                    statusEl.innerHTML = 
+                        '<i class="fas fa-circle text-xs mr-1 text-red-500"></i>Offline';
+                });
+        }
+
+        // Initialize with a sample
+        window.onload = function() {
+            loadSample('normal');
+            updateModelStatus();
+        };
+    </script>
+</body>
+</html>

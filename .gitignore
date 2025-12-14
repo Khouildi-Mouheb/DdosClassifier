@@ -1,0 +1,23 @@
+# You're already in the right directory:
+# PS C:\Users\khoui\OneDrive\Desktop\DsosClassifier>
+
+# Create .gitignore file here:
+echo "# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+
+# Trained models and data (don't commit large files)
+*.pkl
+*.pth
+*.csv
+models/
+CSVdata/
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store" > .gitignore
